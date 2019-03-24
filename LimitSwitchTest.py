@@ -45,7 +45,6 @@ wiringpi.pinMode(DIR_4,1)
 wiringpi.digitalWrite(DIR_4,1)
 wiringpi.pinMode(ALARM_LED,1)
 wiringpi.pinMode(PIN_1,0)
-wiringpi.digitalWrite(PIN_1,1)
 wiringpi.pinMode(PIN_2,1)
 wiringpi.pinMode(PIN_3,1)
 wiringpi.pinMode(PIN_4,1)
@@ -63,7 +62,12 @@ print("Running")
 count = 0;
 try:
     while True:
-        print(wiringpi.digitalRead(PIN_1))
+        val = wiringpi.digitalRead(PIN_1)
+        if val == 1 and count == 0:
+            print("1")
+            count = 1
+        elif val == 0 and count == 1:
+            print("0")
+            count = 0
 except KeyboardInterrupt:
-    
     pass
