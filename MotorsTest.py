@@ -1,5 +1,8 @@
 import wiringpi
+import time
 
+# wiring for motors: x and y positive away from motor; alpha and theta positive in counterclockwise from motor side
+# (brown, black), (yellow, orange)
 EN = 21
 DIR_1 = 23
 STEP_1 = 22
@@ -44,19 +47,35 @@ wiringpi.pinMode(STEP_4,1)
 wiringpi.pinMode(DIR_4,1)
 wiringpi.digitalWrite(DIR_4,1)
 wiringpi.pinMode(ALARM_LED,1)
+wiringpi.digitalWrite(ALARM_LED,0)
 
 print("Running")
 wiringpi.digitalWrite(EN,1)
 try:
     while True:
-#        temp = input("X: Press 'q' to step positive, press 'w' to step negative\nY: Press 'a' to step positive, press 's' to step negative\n")
+        wiringpi.digitalWrite(EN,0)
+        for x in range(1):
+            wiringpi.digitalWrite(STEP_4,1)
+            wiringpi.delayMicroseconds(500)
+            wiringpi.digitalWrite(STEP_4,0)
+            wiringpi.delayMicroseconds(500)
+#        wiringpi.digitalWrite(EN,1)
+#        wiringpi.digitalWrite(EN,0)
+#        for x in range(10):
+#            wiringpi.digitalWrite(STEP_2,1)
+#            wiringpi.delayMicroseconds(500)
+#            wiringpi.digitalWrite(STEP_2,0)
+#            wiringpi.delayMicroseconds(500)
+#        wiringpi.digitalWrite(EN,1)
+        
+#        temp = input("X: Press 'q' to step positive, press 'w' to step negative\nY: Press 'a' to step positive, press 's' to step negative\nAlpha (upper swing): Press 'e' to rotate positive, press 'r' to rotate negative\nTheta (lower swing): Press 'd' to rotate positive, press 'f' to rotate negative\n")
 #        if temp == "q" or temp == "w":
 #            wiringpi.digitalWrite(EN,0)
 #            if temp == "q":
 #                wiringpi.digitalWrite(DIR_1,0)
 #            else:
 #                wiringpi.digitalWrite(DIR_1,1)
-#            for x in range(2045):
+#            for x in range(205):
 #                wiringpi.digitalWrite(STEP_1,1)
 #                wiringpi.delayMicroseconds(400)
 #                wiringpi.digitalWrite(STEP_1,0)
@@ -68,17 +87,42 @@ try:
 #                wiringpi.digitalWrite(DIR_2,0)
 #            else:
 #                wiringpi.digitalWrite(DIR_2,1)
-#            for x in range(600):
+#            for x in range(205):
 #                wiringpi.digitalWrite(STEP_2,1)
 #                wiringpi.delayMicroseconds(400)
 #                wiringpi.digitalWrite(STEP_2,0)
 #                wiringpi.delayMicroseconds(400)
 #            wiringpi.digitalWrite(EN,1)
-        wiringpi.digitalWrite(EN,0)
-        wiringpi.digitalWrite(STEP_4,1)
-        wiringpi.delayMicroseconds(400)
-        wiringpi.digitalWrite(STEP_4,0)
-        wiringpi.delayMicroseconds(400)
+#        elif temp == "e" or temp == "r":
+#            wiringpi.digitalWrite(EN,0)
+#            if temp == "e":
+#                wiringpi.digitalWrite(DIR_3,0)
+#            else:
+#                wiringpi.digitalWrite(DIR_3,1)
+#            for x in range(3):
+#                wiringpi.digitalWrite(STEP_3,1)
+#                wiringpi.delayMicroseconds(400)
+#                wiringpi.digitalWrite(STEP_3,0)
+#                wiringpi.delayMicroseconds(400)
+#            wiringpi.digitalWrite(EN,1)
+#        elif temp == "d" or temp == "f":
+#            wiringpi.digitalWrite(EN,0)
+#            if temp == "d":
+#                wiringpi.digitalWrite(DIR_4,0)
+#            else:
+#                wiringpi.digitalWrite(DIR_4,1)
+#            for x in range(3):
+#                wiringpi.digitalWrite(STEP_4,1)
+#                wiringpi.delayMicroseconds(400)
+#                wiringpi.digitalWrite(STEP_4,0)
+#                wiringpi.delayMicroseconds(400)
+#            wiringpi.digitalWrite(EN,1)
+        
+#        wiringpi.digitalWrite(EN,0)
+#        wiringpi.digitalWrite(STEP_4,1)
+#        wiringpi.delayMicroseconds(400)
+#        wiringpi.digitalWrite(STEP_4,0)
+#        wiringpi.delayMicroseconds(400)
 except KeyboardInterrupt:
     wiringpi.digitalWrite(STEP_1,0)
     wiringpi.digitalWrite(STEP_2,0)

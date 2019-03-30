@@ -22,7 +22,7 @@ def takeStep(motor, direction):
     
     wiringpi.digitalWrite(EN,0)
     
-    wiringpi.digitalwrite(DIR,direction)
+    wiringpi.digitalwrite(DIR,direction) # direction = 0 is away from limit switch
     
     wiringpi.digitalWrite(STEP,1)
     wiringpi.delayMicroseconds(400)
