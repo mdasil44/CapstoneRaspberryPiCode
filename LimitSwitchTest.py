@@ -10,7 +10,7 @@ STEP_3 = 0
 DIR_4 = 3
 STEP_4 = 12
 
-ALARM_LED = 24
+#ALARM_LED = 24
 
 # 16-pin connector to GPIO w/ 1 being the pin closest to the red led
 PIN_1 = 29
@@ -44,27 +44,31 @@ wiringpi.digitalWrite(DIR_3,1)
 wiringpi.pinMode(STEP_4,1)
 wiringpi.pinMode(DIR_4,1)
 wiringpi.digitalWrite(DIR_4,1)
-wiringpi.pinMode(ALARM_LED,1)
-wiringpi.pinMode(PIN_1,0) # X Limit
-wiringpi.pinMode(PIN_2,0) # Y Limit
-wiringpi.pinMode(PIN_3,0) # Alpha Limit
-wiringpi.pinMode(PIN_4,0) # Theta Limit
+#wiringpi.pinMode(ALARM_LED,1)
+#wiringpi.pinMode(PIN_1,0)
+#wiringpi.pinMode(PIN_2,0)
 wiringpi.pinMode(PIN_5,1)
 wiringpi.pinMode(PIN_6,1)
-wiringpi.pinMode(PIN_7,1)
-wiringpi.pinMode(PIN_8,1)
-wiringpi.pinMode(PIN_9,1)
-wiringpi.pinMode(PIN_10,1)
-wiringpi.pinMode(PIN_11,1)
-wiringpi.pinMode(PIN_12,1)
-wiringpi.pinMode(PIN_13,1)
+wiringpi.pinMode(PIN_3,1)
+wiringpi.pinMode(PIN_4,1)
+wiringpi.digitalWrite(PIN_3,0) # Alpha Limit
+wiringpi.digitalWrite(PIN_4,0) # Theta Limit
+wiringpi.digitalWrite(PIN_5,0) # X Limit
+wiringpi.digitalWrite(PIN_6,0) # Y Limit
+#wiringpi.pinMode(PIN_7,1)
+#wiringpi.pinMode(PIN_8,1)
+#wiringpi.pinMode(PIN_9,1)
+#wiringpi.pinMode(PIN_10,1)
+#wiringpi.pinMode(PIN_11,1)
+#wiringpi.pinMode(PIN_12,1)
+#wiringpi.pinMode(PIN_13,1)
 
 print("Running")
 count = 0;
 try:
     while True:
-        x = wiringpi.digitalRead(PIN_1)
-        y = wiringpi.digitalRead(PIN_2)
+        x = wiringpi.digitalRead(PIN_5)
+        y = wiringpi.digitalRead(PIN_6)
         alpha = wiringpi.digitalRead(PIN_3)
         theta = wiringpi.digitalRead(PIN_4)
         
