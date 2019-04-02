@@ -37,8 +37,8 @@ def getPower(p,stream):
         noise2Arr = np.append(noise2Arr,noise2)
         print(noise1)
 #        print(goodSignalPower,", ",betterSignalPower)
-#    return np.array([(np.sum(goodSignalPower)/int((RATE/CHUNK)*RECORD_TIME)),(np.sum(betterSignalPower)/int((RATE/CHUNK)*RECORD_TIME))])
-    return noise1Arr
+    return np.array([(np.sum(goodSignalPower)/int((RATE/CHUNK)*RECORD_TIME)),(np.sum(betterSignalPower)/int((RATE/CHUNK)*RECORD_TIME))])
+#    return noise1Arr
 
 if __name__ == "__main__":
     storage = np.array([[0,0]])
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     
     try:
         while True:
-            storage = np.append(storage,[getPower(p,stream)])#,axis=0)
+            storage = np.append(storage,[getPower(p,stream)],axis=0)
 #            print(storage[int((storage.size/2)-1),0],", ",storage[int((storage.size/2)-1),1])
 ##            if storage[storage.size - 1][0] > 100000:
 ##                print(1)
@@ -61,5 +61,5 @@ if __name__ == "__main__":
         stream.close()
         p.terminate()
 
-        np.save("Noise",storage)
+        np.save("Data",storage)
         pass
